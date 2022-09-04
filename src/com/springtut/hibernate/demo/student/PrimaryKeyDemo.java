@@ -1,4 +1,6 @@
-package com.springtut.hibername.demo.student;
+package com.springtut.hibernate.demo.student;
+
+import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,9 +9,12 @@ import org.hibernate.cfg.Configuration;
 import com.springtut.hibernate.demo.DateUtils;
 import com.springtut.hibernate.demo.entity.Student;
 
-public class ReadStudentDemo {
+public class PrimaryKeyDemo {
 
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		property name="hbm2ddl.auto">create</property
+		
 		//create session factory
 				SessionFactory factory = new Configuration()
 											.configure("hibernate.cfg.xml")
@@ -21,32 +26,23 @@ public class ReadStudentDemo {
 			
 				try {
 					//use the session object to save/retrieve Java objects
+					
+
 					//create a student object
 					System.out.println("Creating new student object");
-					Student newStudent = new Student("Mario","Bros", "mario@nitendo.com", DateUtils.parseDate("31/7/1998"));
+					Student newStudent1 = new Student("Paul","Yu", "paul.yu.yu@gmail.com", DateUtils.parseDate("21/2/1982"));
+					Student newStudent2 = new Student("Mary","Kwan", "mary@gmail.com", DateUtils.parseDate("1/1/1982"));
+					Student newStudent3 = new Student("Bonita","Lily", "bonita@gmail.com", DateUtils.parseDate("31/5/1978"));
 					
 					//start transaction
 					session.beginTransaction();
 					
 					System.out.println("Saving the student...");
-					System.out.println(newStudent);
-					
 					//save the student
-					session.save(newStudent);
+					session.save(newStudent1);
+					session.save(newStudent2);
+					session.save(newStudent3);
 					
-					//commit the transaction
-					session.getTransaction().commit();
-					
-					
-					//now get a new session 
-					session = factory.getCurrentSession();
-					session.beginTransaction();
-					
-					//retrieve student based on the id: primary key
-					System.out.println("Getting student with id: " + newStudent.getId());
-					Student myStudent = session.get(Student.class, newStudent.getId());
-					
-					System.out.println("Get complete: " + myStudent);
 					//commit the transaction
 					session.getTransaction().commit();
 					
@@ -54,10 +50,10 @@ public class ReadStudentDemo {
 				}
 				catch(Exception ex) {
 					ex.printStackTrace();
+				
 				}finally {
 					factory.close();
 				}
-
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.springtut.hibername.demo.employee;
+package com.springtut.hibernate.demo.employee;
 
 import java.util.List;
 

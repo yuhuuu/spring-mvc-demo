@@ -1,6 +1,6 @@
 
 
-package com.springtut.hibername.demo.student;
+package com.springtut.hibernate.demo.student;
 
 import java.util.List;
 
